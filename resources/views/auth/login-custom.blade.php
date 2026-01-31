@@ -41,21 +41,20 @@
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                name="email" placeholder="Enter Email Address..."
-                                            />
+                                                name="email" placeholder="Enter Email Address..." />
                                             @error('email')
-                                                <span class="text-danger fw-bolder">
-                                                    {{ $message }}
-                                                </span>
+                                            <span class="text-danger fw-bolder">
+                                                {{ $message }}
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                name="password" placeholder="Password">
+                                                name="password" placeholder="Enter Password...">
                                             @error('password')
-                                                <span class="text-danger fw-bolder">
-                                                    {{ $message }}
-                                                </span>
+                                            <span class="text-danger fw-bolder">
+                                                {{ $message }}
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">

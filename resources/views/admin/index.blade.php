@@ -37,7 +37,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             ESP32-CAM</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-camera fa-2x text-gray-300"></i>
@@ -83,7 +83,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Pending Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-business-time fa-2x text-gray-300"></i>
@@ -95,9 +95,10 @@
 </div>
 
 <h1 class="h3 mb-0 text-gray-800">
-    ผู้ใช้งาน
+    ESP32-CAM
 </h1><br>
 
+<!--
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -127,10 +128,11 @@
             <td>
                 {{ $user->updated_at }}
             </td>
+-->
 
-            <!-- No need for edit and delete for dashboard -->
+<!-- No need for edit and delete for dashboard -->
 
-            <!--  <td class="text-left align-middle">
+<!--  <td class="text-left align-middle">
                 <a href="{{ route('admin.user.edit', $user->id) }}"
                     class="btn btn-warning btn-sm mr-2">
                     Edit
@@ -139,11 +141,11 @@
                 <button class="btn btn-danger btn-sm">
                     Delete
                 </button>
-            </td> -->
+            </td> 
 
         </tr>
-        @endforeach
+@endforeach -->
 
-    </tbody>
+</tbody>
 </table>
 @endsection
