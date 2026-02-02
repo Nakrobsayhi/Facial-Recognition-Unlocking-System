@@ -11,7 +11,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">แบบฟอร์มเพิ่มผู้ใช้งาน</h6>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.user.store') }}" method="POST">
+                <form action="{{ route('admin.user.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf {{-- สำคัญมาก: ต้องมีเพื่อความปลอดภัย --}}
 
                     <div class="form-group">
@@ -41,6 +41,11 @@
                     <div class="form-group">
                         <label>ยืนยันรหัสผ่าน</label>
                         <input type="password" name="password_confirmation" class="form-control">
+                    </div>
+
+                    <div>
+                        <label>รูปหน้า</label><br>
+                        <input type="file" name="image" accept="image/*">
                     </div>
 
                     <hr>

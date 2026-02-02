@@ -31,6 +31,7 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Image</th>
             <th scope="col">Created_at</th>
             <th scope="col">Updated_at</th>
             <th scope="col">Action</th>
@@ -49,6 +50,14 @@
             </td>
             <td>
                 {{ $user->email }}
+            </td>
+            <td>
+                @if ($user->image)
+                <img src="{{ Storage::url($user->image) }}" width="56px">
+                @else
+                <img src="{{ asset('assets/sbadmin/img/profile.png') }}" width="56px">
+                @endif
+
             </td>
             <td>
                 {{ $user->created_at }}

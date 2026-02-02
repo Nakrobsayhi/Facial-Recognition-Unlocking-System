@@ -99,10 +99,11 @@
 </h1><br>
 
 <!-- placeholder for ESP32-CAM -->
-<video controls width="250">
+<video controls width="600">
     <source src="movie.mp4" type="video/mp4">
 </video>
 
+<!--
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -127,7 +128,7 @@
                 13:00
             </td>
         </tr>
-        <!--
+
         @foreach ($users as $key => $user)
         <tr>
             <th scope="row">

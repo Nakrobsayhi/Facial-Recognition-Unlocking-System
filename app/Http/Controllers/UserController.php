@@ -36,12 +36,21 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+
+        // for image saving
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('users', 'public');
+        } else {
+            $path = null;
+        }
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'image' => $path,
         ]);
 
         return redirect()
@@ -116,5 +125,10 @@ class UserController extends Controller
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'ลบข้อมูลสำเร็จ');
+    }
+
+    public function timelog()
+    {
+        return view('admin.user.timelog');
     }
 }

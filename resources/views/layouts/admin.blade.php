@@ -55,6 +55,15 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.user.timelog') }}"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-clock"></i>
+                    <span>ประวัติเข้า-ออก</span>
+                </a>
+
+            </li>
+
             {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -90,7 +99,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    {{-- <form
+                    <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small"
@@ -101,7 +110,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form> --}}
+                    </form>
 
                     <ul class="navbar-nav ml-auto">
 
@@ -158,7 +167,22 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}
                                 </span>
-                                <img class="img-profile rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg">
+
+                                <!-- displaying user profile-->
+                                @php
+                                $authUser = Auth::user();
+                                @endphp
+
+                                @if ($authUser && $authUser->image)
+                                <img class="img-profile rounded-circle"
+                                    src="{{ Storage::url($authUser->image) }}"
+                                    width="56">
+                                @else
+                                <img class="img-profile rounded-circle"
+                                    src="{{ asset('assets/sbadmin/img/profile.png') }}"
+                                    width="56">
+                                @endif
+
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
