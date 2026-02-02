@@ -98,19 +98,36 @@
     ESP32-CAM
 </h1><br>
 
-<!--
+<!-- placeholder for ESP32-CAM -->
+<video controls width="250">
+    <source src="movie.mp4" type="video/mp4">
+</video>
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Created_at</th>
-            <th scope="col">Updated_at</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
         </tr>
     </thead>
     <tbody>
-
+        <tr>
+            <th scope="row">
+                001
+            </th>
+            <td>
+                test
+            </td>
+            <td>
+                2/2/2026
+            </td>
+            <td>
+                13:00
+            </td>
+        </tr>
+        <!--
         @foreach ($users as $key => $user)
         <tr>
             <th scope="row">
@@ -129,10 +146,9 @@
                 {{ $user->updated_at }}
             </td>
 -->
+        <!-- No need for edit and delete for dashboard -->
 
-<!-- No need for edit and delete for dashboard -->
-
-<!--  <td class="text-left align-middle">
+        <!--  <td class="text-left align-middle">
                 <a href="{{ route('admin.user.edit', $user->id) }}"
                     class="btn btn-warning btn-sm mr-2">
                     Edit
@@ -146,6 +162,6 @@
         </tr>
 @endforeach -->
 
-</tbody>
+    </tbody>
 </table>
 @endsection
