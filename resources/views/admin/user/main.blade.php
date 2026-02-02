@@ -30,7 +30,6 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Email</th>
             <th scope="col">Image</th>
             <th scope="col">Created_at</th>
             <th scope="col">Updated_at</th>
@@ -47,9 +46,6 @@
             </th>
             <td>
                 {{ $user->name }}
-            </td>
-            <td>
-                {{ $user->email }}
             </td>
             <td>
                 @if ($user->image)

@@ -27,18 +27,18 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Email</th>
             <th scope="col">Image</th>
+            <th scope="col">Status</th>
             <th scope="col">Logged_at</th>
         </tr>
     </thead>
     <tbody>
         <td>01</td>
         <td>test</td>
-        <td>test@gmail.com</td>
         <td>
             <img src="{{ asset('assets/sbadmin/img/profile.png') }}" width="56px">
         </td>
+        <td>เข้า/ออก</td>
         <td>2026-02-02 08:55:00</td>
     </tbody>
 </table>

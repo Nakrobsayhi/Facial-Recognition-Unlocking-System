@@ -25,13 +25,13 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>อีเมล</label>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
                         @error('email')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label>รหัสผ่าน</label>
@@ -49,8 +49,8 @@
         </div>
     </div>
 </div>
- 
-    <!-- <form action="{{ route('admin.user.update', $user->id) }}" method="post">
+
+<!-- <form action="{{ route('admin.user.update', $user->id) }}" method="post">
 
         @csrf
 
