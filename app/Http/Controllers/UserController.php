@@ -39,7 +39,6 @@ class UserController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // for image saving
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('users', 'public');
         } else {
@@ -89,26 +88,19 @@ class UserController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // keep old image by default
         $path = $user->image;
 
-        // if new image uploaded
         if ($request->hasFile('image')) {
 
-            // delete old image
             if ($user->image && Storage::disk('public')->exists($user->image)) {
                 Storage::disk('public')->delete($user->image);
             }
 
-            // save new image
             $path = $request->file('image')->store('users', 'public');
         }
-
-        // update data
         $user->name = $request->name;
         $user->image = $path;
 
-        // update password only if filled
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
@@ -121,16 +113,21 @@ class UserController extends Controller
     }
 
 
+
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+
+        if ($user->image && Storage::disk('public')->exists($user->image)) {
+            Storage::disk('public')->delete($user->image);
+        }
+
         $user->delete();
 
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'ลบข้อมูลสำเร็จ');
     }
-
     public function timelog()
     {
         return view('admin.user.timelog');
