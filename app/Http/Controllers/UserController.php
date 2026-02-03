@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -78,36 +79,41 @@ class UserController extends Controller
         }
     }
 
-    public function update(Request $req, $id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
-        $req->validate(
-            [
-                'name' => 'required|max:255',
-                'email' => 'required|max:255',
-                'password' => 'nullable|min:8',
-            ],
-            [
-                'name.required' => "กรอกข้อมูลในช่องนี้",
-                'name.max' => "ข้อมูลยาวเกินไป",
-                'email.required' => "กรอกข้อมูลในช่องนี้",
-                'email.max' => "ข้อมูลยาวเกินไป",
-                'password.min' => 'รหัสผ่านต้องอย่างน้อย 8 ตัว',
-            ]
-        );
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|min:8|confirmed',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
 
-        $data = [
-            'name' => $req->name,
-            'email' => $req->email,
-        ];
+        // keep old image by default
+        $path = $user->image;
 
-        // update password if filled
-        if ($req->filled('password')) {
-            $data['password'] = Hash::make($req->password);
+        // if new image uploaded
+        if ($request->hasFile('image')) {
+
+            // delete old image
+            if ($user->image && Storage::disk('public')->exists($user->image)) {
+                Storage::disk('public')->delete($user->image);
+            }
+
+            // save new image
+            $path = $request->file('image')->store('users', 'public');
         }
 
-        $user->update($data);
+        // update data
+        $user->name = $request->name;
+        $user->image = $path;
+
+        // update password only if filled
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
 
         return redirect()
             ->route('admin.user.index')

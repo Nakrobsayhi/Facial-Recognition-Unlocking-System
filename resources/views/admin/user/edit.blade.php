@@ -14,12 +14,14 @@
                 <h6 class="m-0 font-weight-bold text-primary">แบบฟอร์มแก้ไขผู้ใช้งาน</h6>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.user.update', $user->id) }}" method="post">
+                <form action="{{ route('admin.user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
                     @csrf {{-- สำคัญมาก: ต้องมีเพื่อความปลอดภัย --}}
 
                     <div class="form-group">
                         <label>ชื่อ-นามสกุล</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $user->name) }}">
                         @error('name')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -40,6 +42,22 @@
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="form-group">
+                        <label>ยืนยันรหัสผ่าน</label>
+                        <input type="password" name="password_confirmation" class="form-control">
+                    </div>
+
+                    <div>
+                        <label>รูปหน้า</label><br>
+                        <input type="file" name="image" accept="image/*">
+                    </div>
+
+                    @if ($user->image)
+                    <img src="{{ asset('storage/' . $user->image) }}"
+                        width="120"
+                        class="mb-2">
+                    @endif
 
                     <hr>
                     <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
