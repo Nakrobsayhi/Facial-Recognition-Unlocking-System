@@ -22,7 +22,9 @@
 
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.index') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <img class="img-profile rounded-circle"
+                                    src="{{ asset('assets/sbadmin/img/logo.jpg') }}"
+                                    width="56">
                 </div>
                 <div class="sidebar-brand-text mx-3">ระบบปลดล็อคประตูด้วยใบหน้า</div>
             </a>
