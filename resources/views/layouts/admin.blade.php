@@ -168,22 +168,6 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}
                                 </span>
-
-                                <!-- displaying user profile-->
-                                @php
-                                $authUser = Auth::user();
-                                @endphp
-
-                                @if ($authUser && $authUser->image)
-                                <img class="img-profile rounded-circle"
-                                    src="{{ Storage::url($authUser->image) }}"
-                                    width="56">
-                                @else
-                                <img class="img-profile rounded-circle"
-                                    src="{{ asset('assets/sbadmin/img/profile.png') }}"
-                                    width="56">
-                                @endif
-
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">

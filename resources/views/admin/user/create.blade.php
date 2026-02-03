@@ -43,11 +43,6 @@
                         <input type="password" name="password_confirmation" class="form-control">
                     </div>
 
-                    <div>
-                        <label>รูปหน้า</label><br>
-                        <input type="file" name="image" accept="image/*">
-                    </div>
-
                     <hr>
                     <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
                     <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">ยกเลิก</a>

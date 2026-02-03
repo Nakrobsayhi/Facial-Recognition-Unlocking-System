@@ -36,19 +36,11 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'password' => 'required|min:8|confirmed',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('users', 'public');
-        } else {
-            $path = null;
-        }
 
         User::create([
             'name' => $request->name,
             'password' => Hash::make($request->password),
-            'image' => $path,
         ]);
 
         return redirect()
@@ -85,21 +77,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'password' => 'nullable|min:8|confirmed',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-
-        $path = $user->image;
-
-        if ($request->hasFile('image')) {
-
-            if ($user->image && Storage::disk('public')->exists($user->image)) {
-                Storage::disk('public')->delete($user->image);
-            }
-
-            $path = $request->file('image')->store('users', 'public');
-        }
-        $user->name = $request->name;
-        $user->image = $path;
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
@@ -117,11 +95,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-
-        if ($user->image && Storage::disk('public')->exists($user->image)) {
-            Storage::disk('public')->delete($user->image);
-        }
-
         $user->delete();
 
         return redirect()
